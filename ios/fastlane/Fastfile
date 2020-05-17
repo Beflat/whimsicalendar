@@ -53,6 +53,13 @@ platform :ios do
             shallow_clone: true
         )
 
+        automatic_code_signing(
+            targets: "Runner",
+            code_sign_identity: ENV["CODE_SIGNING_IDENTITY"],
+            profile_name: MY_PROFILE,
+            use_automatic_signing: false
+        )
+
         settings_to_override = {
             :BUNDLE_IDENTIFIER => MY_APP_ID,
             :PROVISIONING_PROFILE_SPECIFIER => MY_PROFILE,
