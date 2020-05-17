@@ -46,9 +46,17 @@ platform :ios do
             clone_branch_directly: true,
             shallow_clone: true
         )
+        xcodebuild_args = {
+              UseModernBuildSystem: "YES"
+        }
+        xcodebuild_args = xcodebuild_args.map do |k,v|
+          "#{k.to_s.shellescape}=#{v.shellescape}"
+        end.join ' '
+
         build_app(workspace: "Runner.xcworkspace",
             scheme: "Runner",
             configuration: "Release",
+            xcargs: xcodebuild_args,
             export_options: {
             method: "ad-hoc"
         })
