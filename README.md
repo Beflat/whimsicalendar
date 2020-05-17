@@ -1,13 +1,56 @@
-# Whimsicalendar
+## [fastlane match](https://docs.fastlane.tools/actions/match/)
 
-![CI](https://github.com/tri-star/whimsicalendar/workflows/CI/badge.svg)
-[![codecov](https://codecov.io/gh/tri-star/whimsicalendar/branch/master/graph/badge.svg)](https://codecov.io/gh/tri-star/whimsicalendar)
+This repository contains all your certificates and provisioning profiles needed to build and sign your applications. They are encrypted using OpenSSL via a passphrase.
 
-## 概要
+**Important:** Make sure this repository is set to private and only your team members have access to this repo.
 
-適当に予定を登録するとN週間後の空いている休日に勝手に予定を投入。
-TimeTreeなどと連携する機能も実装する予定。
+Do not modify this file, as it gets overwritten every time you run _match_.
 
-Flutterと設計の練習用。
+### Installation
 
-## 設計方針
+Make sure you have the latest version of the Xcode command line tools installed:
+
+```
+xcode-select --install
+```
+
+Install _fastlane_ using
+
+```
+[sudo] gem install fastlane -NV
+```
+
+or alternatively using `brew cask install fastlane`
+
+### Usage
+
+Navigate to your project folder and run
+
+```
+fastlane match appstore
+```
+```
+fastlane match adhoc
+```
+```
+fastlane match development
+```
+```
+fastlane match enterprise
+```
+
+For more information open [fastlane match git repo](https://docs.fastlane.tools/actions/match/)
+
+### Content
+
+#### certs
+
+This directory contains all your certificates with their private keys
+
+#### profiles
+
+This directory contains all provisioning profiles
+
+------------------------------------
+
+For more information open [fastlane match git repo](https://docs.fastlane.tools/actions/match/)
