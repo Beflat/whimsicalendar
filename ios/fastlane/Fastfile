@@ -54,7 +54,7 @@ platform :ios do
             method: "ad-hoc"
         })
         firebase_app_distribution(
-            app: "whisimicalendar",
+            app: "whimsicalendar",
             groups: "developer",
             release_notes: "test",
             firebase_cli_path: `which firebase`.strip()
