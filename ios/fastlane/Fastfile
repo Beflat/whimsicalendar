@@ -53,7 +53,8 @@ platform :ios do
             shallow_clone: true
         )
 
-        automatic_code_signing(
+        update_code_signing_settings(
+            path: "Runner.xcodeproj",
             targets: "Runner",
             code_sign_identity: ENV["CODE_SIGNING_IDENTITY"],
             profile_name: MY_PROFILE,
