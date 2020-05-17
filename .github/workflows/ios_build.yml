@@ -80,6 +80,12 @@ jobs:
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
           SLACK_URL: ${{ secrets.SLACK_URL }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FASTLANE_USERNAME: ${{ secrets.FASTLANE_USERNAME }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         run: |
           cd ios
           fastlane adhoc --verbose
