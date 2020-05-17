@@ -27,28 +27,25 @@ platform :ios do
         )
     end
 
-    desc "Import Certificates and Provisioning Profile"
-    private_lane :import_certificates_and_provisioning_profile do
-        create_keychain(
-            default_keychain: true,
-            path: "/Users/runner/Library/Keychains/mykeychain-db",
-            password: ENV["KEYCHAIN_PASSWORD"],
-            unlock: true,
-            timeout: 1800
-        )
-        import_certificate(
-            certificate_path: "ios_distribution.cer",
-            certificate_password: "",
-            keychain_path: "/Users/runner/Library/Keychains/mykeychain-db",
-            keychain_password: ENV["KEYCHAIN_PASSWORD"],
-            log_output: true
-        )
-        install_provisioning_profile(path: "adhoc.mobileprovision")
-    end
-
     desc "Archive AdHoc and send to Firebase"
     lane :adhoc do
-        import_certificates_and_provisioning_profile
+        create_keychain(
+            default_keychain: true,
+            name: "mykeychain",
+            password: ENV["KEYCHAIN_PASSWORD"],
+            unlock: true,
+            timeout: 180
+        )
+        match(
+            readonly: true,
+            type: "adhoc",
+            keychain_name: "mykeychain",
+            keychain_password: ENV["KEYCHAIN_PASSWORD"],
+            git_branch: "match-certs",
+            git_basic_authorization: Base64.strict_encode64("tri-star:#{ENV['GITHUB_TOKEN']}"),
+            clone_branch_directly: true,
+            shallow_clone: true
+        )
         build_app(workspace: "Runner.xcworkspace",
             scheme: "Runner",
             configuration: "Release",

@@ -58,17 +58,6 @@ jobs:
           cd ios
           echo "${{ secrets.GOOGLE_SERVICES_IOS_PLIST }}" > Runner/GoogleService-Info.plist
 
-      - name: Keychain.p12
-        run: |
-          cd ios
-          echo "${{ secrets.APP_CERTIFICATE }}" | base64 --decode > ios_distribution.cer
-
-      - name: ProvisioningProfile
-        run: |
-          cd ios
-          echo "${{ secrets.PROVISIONING_PROFILE }}" > adhoc.mobileprovision.txt
-          base64 --decode adhoc.mobileprovision.txt > adhoc.mobileprovision
-
       - name: debug directories
         run: |
           echo "hostedtoolcache"
@@ -90,7 +79,6 @@ jobs:
         env:
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
           SLACK_URL: ${{ secrets.SLACK_URL }}
-          CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           cd ios
