@@ -15,7 +15,7 @@ platform :ios do
             type: "adhoc",
             keychain_name: "mykeychain",
             keychain_password: ENV["KEYCHAIN_PASSWORD"],
-            git_branch: "match-certs",
+            git_branch: "create-certs",
             git_basic_authorization: Base64.strict_encode64("tri-star:#{ENV['GITHUB_TOKEN']}"),
             clone_branch_directly: true,
             output_path: "ios/fastlane",
@@ -41,7 +41,7 @@ platform :ios do
             type: "adhoc",
             keychain_name: "mykeychain",
             keychain_password: ENV["KEYCHAIN_PASSWORD"],
-            git_branch: "match-certs",
+            git_branch: "create-certs",
             git_basic_authorization: Base64.strict_encode64("tri-star:#{ENV['GITHUB_TOKEN']}"),
             clone_branch_directly: true,
             shallow_clone: true
