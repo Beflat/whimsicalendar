@@ -63,7 +63,7 @@ platform :ios do
 
         settings_to_override = {
             :BUNDLE_IDENTIFIER => MY_APP_ID,
-            :PROVISIONING_PROFILE_SPECIFIER => MY_PROFILE
+            :PROVISIONING_PROFILE_SPECIFIER => MY_PROFILE,
             :DEVELOPMENT_TEAM => MY_TEAM
         }
         build_app(workspace: "Runner.xcworkspace",
