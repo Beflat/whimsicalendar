@@ -36,9 +36,15 @@ platform :ios do
             unlock: true,
             timeout: 180
         )
+
+        MY_APP_ID = "net.urban-theory.whimsicalendar"
+        MY_PROFILE = "match AdHoc net.urban-theory.whimsicalendar 1589695224"
+        MY_TEAM = "F946L3T4HH"
+
         match(
             readonly: true,
             type: "adhoc",
+            app_identifier: MY_APP_ID,
             keychain_name: "mykeychain",
             keychain_password: ENV["KEYCHAIN_PASSWORD"],
             git_branch: "deploy",
@@ -46,20 +52,26 @@ platform :ios do
             clone_branch_directly: true,
             shallow_clone: true
         )
-        xcodebuild_args = {
-              UseModernBuildSystem: "YES"
-        }
-        xcodebuild_args = xcodebuild_args.map do |k,v|
-          "#{k.to_s.shellescape}=#{v.shellescape}"
-        end.join ' '
 
+        settings_to_override = {
+            :BUNDLE_IDENTIFIER => MY_APP_ID,
+            :PROVISIONING_PROFILE_SPECIFIER => MY_PROFILE,
+            :DEVELOPMENT_TEAM => MY_TEAM
+        }
         build_app(workspace: "Runner.xcworkspace",
+            export_method: "ad-hoc",
             scheme: "Runner",
             configuration: "Release",
-            xcargs: xcodebuild_args,
+            xcargs: settings_to_override,
             export_options: {
-            method: "ad-hoc"
-        })
+                uploadSymbols: false,
+                provisioningProfiles: {
+                    MY_APP_ID => MY_PROFILE
+                }
+            }
+        )
+        # provisioningProfiles: ENV["MATCH_PROVISIONING_PROFILE_MAPPING"]
+
         firebase_app_distribution(
             app: "whimsicalendar",
             groups: "developer",

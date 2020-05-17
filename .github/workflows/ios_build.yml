@@ -35,6 +35,9 @@ jobs:
           path: ios/Pods
           key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
 
+      - name: xcodebuild help
+        run: xcodebuild -help
+
       - name: Flutter build
         run: |
           flutter pub get
