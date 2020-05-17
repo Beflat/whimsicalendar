@@ -49,7 +49,6 @@ platform :ios do
         build_app(workspace: "Runner.xcworkspace",
             scheme: "Runner",
             configuration: "Release",
-            clean: true,
             export_options: {
             method: "ad-hoc"
         })
