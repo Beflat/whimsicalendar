@@ -1,0 +1,43 @@
+name: iOSBuild
+
+on:
+  push:
+    branches:
+      - create-certs
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Select Xcode version
+        run: cd ios && sudo xcode-select -s '/Applications/Xcode_11.2.1.app'
+
+      - name: Show Xcode version
+        run: cd ios && xcodebuild -version
+
+      - name: Run fastlane
+        env:
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          SLACK_URL: ${{ secrets.SLACK_URL }}
+          CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FASTLANE_USERNAME: ${{ secrets.FASTLANE_USERNAME }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ios
+          fastlane create_certs --verbose
+
+      - name: Debug directories
+        run: |
+          cd ios
+          ls -l
+          echo ""
+          echo "-- fastlane ----------------------------"
+          ls -l fastlane
