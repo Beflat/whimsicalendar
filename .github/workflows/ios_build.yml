@@ -74,6 +74,7 @@ jobs:
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
           SLACK_URL: ${{ secrets.SLACK_URL }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FASTLANE_USERNAME: ${{ secrets.FASTLANE_USERNAME }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
@@ -82,4 +83,4 @@ jobs:
           CODE_SIGNING_IDENTITY: ${{ secrets.CODE_SIGNING_IDENTITY }}
         run: |
           cd ios
-          fastlane adhoc --verbose
+          bundle exec fastlane adhoc --verbose

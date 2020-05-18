@@ -86,7 +86,7 @@ platform :ios do
         # provisioningProfiles: ENV["MATCH_PROVISIONING_PROFILE_MAPPING"]
 
         firebase_app_distribution(
-            app: "whimsicalendar",
+            app: ENV["FIREBASE_APP_ID"],
             groups: "developer",
             release_notes: "test",
             firebase_cli_path: `which firebase`.strip(),
