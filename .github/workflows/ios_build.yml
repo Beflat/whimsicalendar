@@ -20,10 +20,11 @@ jobs:
         with:
           flutter-version: '1.12.13+hotfix.9'
 
-      - name: Install fastlane plugin firebase_app_distribution
+      - name: Install fastlane and plugins
         run: |
           cd ios
-          fastlane add_plugin firebase_app_distribution
+          gem install bundler
+          bundle install
 
       - name: xcodebuild help
         run: xcodebuild -help
