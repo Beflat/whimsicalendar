@@ -29,6 +29,11 @@ platform :ios do
 
     desc "Archive AdHoc and send to Firebase"
     lane :adhoc do
+
+        setup_ci(
+          provider: "travis"
+        )
+
         create_keychain(
             default_keychain: true,
             name: "mykeychain",
