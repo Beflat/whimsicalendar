@@ -3,10 +3,10 @@ name: iOSBuild
 on:
   pull_request:
     branches:
-      - deploy-test2
-    push:
-      branches:
-        - deploy-test2
+      - deploy-test3
+  push:
+    branches:
+      - deploy-test3
     
 jobs:
   build:
