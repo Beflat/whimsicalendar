@@ -39,7 +39,7 @@ platform :ios do
             name: "mykeychain",
             password: ENV["KEYCHAIN_PASSWORD"],
             unlock: true,
-            timeout: 180
+            timeout: 7200
         )
 
         MY_APP_ID = "net.urban-theory.whimsicalendar"
