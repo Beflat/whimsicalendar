@@ -29,11 +29,10 @@ jobs:
         with:
           flutter-version: '1.12.13+hotfix.9'
 
-      - uses: actions/cache@v1
-        id: pods-cache
-        with:
-          path: ios/Pods
-          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+      - name: Install fastlane plugin firebase_app_distribution
+        run: |
+          cd ios
+          fastlane add_plugin firebase_app_distribution
 
       - name: xcodebuild help
         run: xcodebuild -help
