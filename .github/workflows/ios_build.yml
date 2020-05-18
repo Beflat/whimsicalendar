@@ -13,15 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache Flutter
-        uses: actions/cache@v1
-        id: flutter-cache
-        env:
-          FLUTTER_VERSION: 1.12.13-hotfix.9
-        with:
-          path: /Users/runner/hostedtoolcache/flutter/1.12.13-hotfix.9-stable
-          key: ${{ runner.os }}-flutter-1.12.13-hotfix.9-stable
-
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
